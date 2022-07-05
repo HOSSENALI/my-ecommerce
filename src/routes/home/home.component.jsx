@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom';
 
 import Directory from '../../components/directory/directory.component';
+import ShowMore from '../../components/showMore/ShowMore';
 
 const Home = () => {
   const categories = [
@@ -35,6 +36,7 @@ const Home = () => {
     <div>
       <Directory categories={categories} />
       <Outlet />
+      {/* <ShowMore/> */}
     </div>
   );
 };

@@ -13,7 +13,6 @@ const Navigation = () => {
   const { currentUser } = useContext(UserContext);
   const { isCartOpen } = useContext(CartContext);
 
-  console.log("Hi", currentUser);
   return (
     <Fragment>
       <div className="navigation">
@@ -21,7 +20,7 @@ const Navigation = () => {
           <CrwnLogo className="logo" />
         </Link>
         <div className="nav-links-container">
-          <Link className="nav-link" to="/shop">
+          <Link className="nav-link" to="/hats">
             SHOP
           </Link>
           {currentUser ? (

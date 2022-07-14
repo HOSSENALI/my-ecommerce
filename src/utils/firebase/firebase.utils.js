@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithPopup, signInWithRedirect, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { getAuth, signInWithPopup, signInWithRedirect, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore'
 
 // Your web app's Firebase configuration
@@ -31,7 +31,7 @@ export const signInWithGooglePopup = () => (
 //saving user to firebase database..........................................
 const db = getFirestore(); //creating instance of firebase database
 
-export const createUserDocumentFromAuth = async (userAuth, additionalInformation={}) => {
+export const createUserDocumentFromAuth = async (userAuth, additionalInformation = {}) => {
 
     if (!userAuth) return;
     const userDocRef = doc(db, 'users', userAuth.uid);
@@ -53,14 +53,21 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInformation
     return userDocRef;
 
 }
-
+// creating user to database..............
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
     if (!email || !password) return;
     return await createUserWithEmailAndPassword(auth, email, password);
 }
+// sign-in function..............
 export const signInAuthUserWithEmailAndPassword = async (email, password) => {
     if (!email || !password) return;
-  
+
     return await signInWithEmailAndPassword(auth, email, password);
-  };
+};
+
+//function for signout
 export const signOutUser = async () => await signOut(auth);
+
+//to track login or logout user
+export const onAuthStateChangedListener = (callback) =>
+    onAuthStateChanged(auth, callback);

@@ -4,7 +4,7 @@ export const addCartItem = (cartItems, productToAdd) => {
   const existingCartItem = cartItems.find(
     (cartItem) => cartItem.id === productToAdd.id
   );
-  console.log("Hossen");
+
   if (existingCartItem) {
     return cartItems.map((cartItem) =>
       cartItem.id === productToAdd.id
@@ -30,11 +30,13 @@ export const CartProvider = ({ children }) => {
   const [cartItemCount, setCartItemCount] = useState(0);
 
   useEffect(() => {
-    const count = cartItems.reduce(
-      (total, cartItem) => total + cartItem.quantity,
-      0
-    );
-    setCartItemCount(count);
+    // const count = cartItems.reduce((total, cartItem) => total + cartItem.quantity,0);
+    let totalProduct = 0;
+    cartItems.map((cartItem) => {
+      totalProduct = totalProduct + cartItem.quantity;
+      // return (total);
+    });
+    setCartItemCount(totalProduct);
   }, [cartItems]);
 
   const addItemToCart = (product) =>

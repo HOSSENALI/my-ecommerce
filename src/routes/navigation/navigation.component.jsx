@@ -20,7 +20,6 @@ import {
 
 const Navigation = () => {
   const currentUser = useSelector(selectCurrentUser);
-  console.log("Hi",currentUser);
   const isCartOpen = useSelector(selectIsCartOpen);
 
   return (

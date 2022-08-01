@@ -32,7 +32,6 @@ const SignInForm = () => {
 
     try {
       await signInAuthUserWithEmailAndPassword(email, password);
-      console.log("Sign out is not working");
       resetFormFields();
     } catch (error) {
       console.log('user sign in failed', error);
